@@ -22,7 +22,6 @@ y_pred = trainer.predict(X)
 loss, discrim_fv = trainer.scores(X, y)
 ```
 ## Model
-Currently implement three clustering models
 ### Spectral
 Compute a matrix's relaxed spectral clustering. This will return a matrix with the number of eigenvectors same as the number of clusters associated with the largest eigenvalues.
 ```
