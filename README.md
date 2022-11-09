@@ -15,10 +15,17 @@ Cutting-Plane Training of Structural SVMs
 ```
 trainer = OneSlackSSVM(model, C=1, n_jobs=1, verbose=1, show_loss_every=1)
 ```
-Functions
+#### Functions
+.fit(X, Y): X is iterable containing 2d training examples; Y is iterable containing 1d true labels
 ```
-trainer.fit(X, Y) # X is iterable containing 2d training examples; Y is iterable containing 1d true labels
+trainer.fit(X, Y)
+```
+.predict(X): X is one 2d example
+```
 y_pred = trainer.predict(X)
+```
+.scores(X, y): X is one 2d example; y is one 1d true labels. Return loss and discriminant function value
+```
 loss, discrim_fv = trainer.scores(X, y)
 ```
 ## Model
