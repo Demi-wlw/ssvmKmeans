@@ -1,8 +1,8 @@
 # ssvmKmeans
 The implementation of strucutural SVM for clustering\
 Coding Reference: [PyStruct](https://github.com/pystruct/pystruct)\
-Paper Reference: Supervised K-means Clustering, Thomas Finley 2007\
-**Requirements**
+Paper Reference: Supervised K-means Clustering, Thomas Finley 2007
+#### Requirements
 ```
 cvxopt
 numpy
