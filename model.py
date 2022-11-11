@@ -131,20 +131,20 @@ class Spectral(StructuredModel):
             # This is already a two dimensional array so we may just return it.
             return sparse.csc_matrix(y)
         elif y.ndim == 1:
-            n_cls = len(np.unique(y))
-            Y = sparse.lil_matrix((y.size, n_cls))
             # Compute the class/cluster memberships.
             index2members = {} # class: set{index,...}
             for n, c in enumerate(y):
-                Y[n,c] = 1
                 if c not in index2members:
                     index2members[c] = set([n])
                 else:
                     index2members[c].add(n)
-
+            clusters = sorted(tuple(cs) for cs in index2members.values())
+            Y = sparse.lil_matrix((y.size, len(clusters)))
             # For each class, scale the appropriate column.
-            for cls, s in index2members.items():
-                Y[:,cls] = Y[:,cls] / np.sqrt(len(s))
+            for cls, s in enumerate(clusters):
+                entry = 1.0 / np.sqrt(len(s))
+                for e in s:
+                    Y[e, cls] = entry
             return Y.tocsc()
         else:
             raise ValueError("y Expected 1 or 2 dimensions, got %d" % (y.ndim))
